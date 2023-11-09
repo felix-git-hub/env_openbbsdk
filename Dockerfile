@@ -60,4 +60,5 @@ RUN set -x && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
     /opt/conda/bin/conda clean -afy
-RUN   /opt/conda/condabin/conda  create -n obb python=3.9.13 -y  
+RUN   /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml
+RUN   /opt/conda/bin/conda clean -afy
