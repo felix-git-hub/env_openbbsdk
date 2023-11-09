@@ -59,5 +59,5 @@ RUN set -x && \
     echo "conda activate obb" >> ~/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
-    /opt/conda/condabin/conda  create -n obb python=3.9.13 -y  && \
     /opt/conda/bin/conda clean -afy
+RUN   /opt/conda/condabin/conda  create -n obb python=3.9.13 -y  
