@@ -58,9 +58,8 @@ RUN set -x && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate obb" >> ~/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
-    find /opt/conda/ -follow -type f -name '*.js.map' -delete 
-    
-RUN   /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml && \
+    find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
+     /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml && \
        /opt/conda/envs/obb/bin/pip install openbb && \
        /opt/conda/envs/obb/bin/pip install jupyter  && \
        /opt/conda/bin/conda clean -afy && \
