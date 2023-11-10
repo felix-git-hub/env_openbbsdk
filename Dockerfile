@@ -27,7 +27,7 @@ RUN apt-get update -q && \
 
 ENV PATH /opt/conda/bin:$PATH
 
-CMD [ "/bin/bash" ]
+CMD [ "/opt/conda/envs/obb/bin/jupyter lab --config=/home/felix/.jupyter/jupyter_lab_config.py" ]
 
 # Leave these args here to better use the Docker build cache
 ARG CONDA_VERSION=py311_23.9.0-0
@@ -61,7 +61,6 @@ RUN set -x && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete 
 RUN   /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml
 RUN   /opt/conda/envs/obb/bin/pip install openbb 
-RUN   /opt/conda/condabin/conda install jupyter  -y --quiet
+RUN   /opt/conda/envs/obb/bin/pip install jupyter  
 RUN   /opt/conda/bin/conda clean -afy
 RUN   /opt/conda/condabin/conda  clean -afy
-
