@@ -63,7 +63,4 @@ RUN set -x && \
     /opt/conda/envs/obb/bin/pip install openbb && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
     /opt/conda/bin/conda clean -afy && \
-    /opt/conda/condabin/conda  clean -afy && \
-    mkdir /home/felix/ && \
-    mkdir /home/felix/.jupyter/ && \
-    touch /home/felix/.jupyter/jupyter_lab_config.py 
+    /opt/conda/condabin/conda  clean -afy 
