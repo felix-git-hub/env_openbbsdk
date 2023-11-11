@@ -40,7 +40,9 @@ RUN apt-get update -q && \
   chown abc /config && \
   mkdir -p /opt && \
   chown abc /opt && \
-  echo "/opt/conda/envs/obb/bin/jupyter lab /config/.jupyter/jupyter_lab_config.py" >> /init
+  echo "#!/bin/sh -e" >> /init && \
+  echo "/opt/conda/envs/obb/bin/jupyter lab /config/.jupyter/jupyter_lab_config.py" >> /init && \
+  chmod +x /init
 
 
 ENV PATH /opt/conda/bin:$PATH
