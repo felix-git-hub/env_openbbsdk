@@ -42,7 +42,7 @@ RUN apt-get update -q && \
   chown abc /opt
 
 
-ENV PATH /config/conda/bin:$PATH
+ENV PATH /opt/conda/bin:$PATH
 
 CMD [ "/config/conda/envs/obb/bin/jupyter lab" ]
 
@@ -51,7 +51,7 @@ ARG CONDA_VERSION=py311_23.9.0-0
 
 
 #user permission
-WORKDIR /opt
+WORKDIR /config
 USER abc
 
 RUN set -x && \
@@ -75,6 +75,7 @@ RUN set -x && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh shasum && \
     echo "conda activate obb" >> /config/.bashrc && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /config/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
     /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml && \
