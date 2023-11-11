@@ -44,7 +44,7 @@ RUN apt-get update -q && \
 
 ENV PATH /opt/conda/bin:$PATH
 
-CMD [ "/config/conda/envs/obb/bin/jupyter lab" ]
+CMD [ "/opt/conda/envs/obb/bin/jupyter lab" ]
 
 # Leave these args here to better use the Docker build cache
 ARG CONDA_VERSION=py311_23.9.0-0
