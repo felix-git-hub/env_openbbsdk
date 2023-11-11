@@ -1,10 +1,19 @@
-
-
 FROM debian:bookworm-slim
 
-LABEL maintainer="Anaconda, Inc"
+
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+ARG CERTBOT_VERSION
+LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="felix"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+
+
+
+
+#sudo permission
 
 # hadolint ignore=DL3008
 RUN apt-get update -q && \
@@ -23,15 +32,27 @@ RUN apt-get update -q && \
         wget \
         build-essential\ 
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && \
+  echo "**** create abc user and make our folders ****" && \
+  useradd -u 911 -U -d /config -s /bin/false abc && \
+  usermod -G users abc && \
+  mkdir /config && \
+  chown abc /config && \
+  mkdir -p /opt && \
+  chown abc /opt
 
-ENV PATH /opt/conda/bin:$PATH
 
-CMD [ "/opt/conda/envs/obb/bin/jupyter lab" ]
+ENV PATH /config/conda/bin:$PATH
+
+CMD [ "/config/conda/envs/obb/bin/jupyter lab" ]
 
 # Leave these args here to better use the Docker build cache
 ARG CONDA_VERSION=py311_23.9.0-0
 
+
+#user permission
+WORKDIR /opt
+USER abc
 
 RUN set -x && \
     UNAME_M="$(uname -m)" && \
@@ -51,16 +72,15 @@ RUN set -x && \
     wget "${MINICONDA_URL}" -O miniconda.sh -q && \
     echo "${SHA256SUM} miniconda.sh" > shasum && \
     if [ "${CONDA_VERSION}" != "latest" ]; then sha256sum --check --status shasum; fi && \
-    mkdir -p /opt && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh shasum && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate obb" >> ~/.bashrc && \
+    echo "conda activate obb" >> /config/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
     /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml && \
     /opt/conda/envs/obb/bin/pip install openbb && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
-    /opt/conda/bin/conda clean -afy && \
+    /opt/conda/condabin/conda clean -afy && \
     /opt/conda/condabin/conda  clean -afy 
