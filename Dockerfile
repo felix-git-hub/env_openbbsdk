@@ -37,9 +37,9 @@ RUN apt-get update -q && \
   useradd -u 911 -U -d /config -s /bin/false abc && \
   usermod -G users abc && \
   mkdir /config && \
-  chown abc /config && \
+  chown abc:abc /config && \
   mkdir -p /opt && \
-  chown abc /opt && \
+  chown abc:abc /opt && \
   echo "#!/bin/sh -e" >> /init && \
   echo "/opt/conda/envs/obb/bin/jupyter lab /config/.jupyter/jupyter_lab_config.py" >> /init && \
   chmod +x /init
@@ -86,3 +86,4 @@ RUN set -x && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
     /opt/conda/condabin/conda  clean -afy 
+VOLUME /config
