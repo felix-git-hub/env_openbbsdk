@@ -66,7 +66,4 @@ RUN    /opt/conda/condabin/conda env create -n obb --file https://raw.githubuser
     /opt/conda/condabin/conda  clean -afy && \
     mkdir /home/felix/ && \
     mkdir /home/felix/.jupyter/ && \
-    touch /home/felix/.jupyter/jupyter_lab_config.py && \
-    mkdir /home/felix/ && \
-    mkdir /home/felix/.jupyter/ && \
-    touch /home/felix/.jupyter/jupyter_lab_config.py
+    touch /home/felix/.jupyter/jupyter_lab_config.py 
