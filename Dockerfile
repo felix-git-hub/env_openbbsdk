@@ -85,5 +85,6 @@ RUN set -x && \
     /opt/conda/envs/obb/bin/pip install openbb && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
-    /opt/conda/condabin/conda  clean -afy 
+    /opt/conda/condabin/conda  clean -afy && \
+    touch /opt/test
 VOLUME /config
