@@ -56,6 +56,7 @@ WORKDIR /config
 USER abc
 
 RUN set -x && \
+    whoami &&\
     UNAME_M="$(uname -m)" && \
     if [ "${UNAME_M}" = "x86_64" ]; then \
         MINICONDA_URL="https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-Linux-x86_64.sh"; \
