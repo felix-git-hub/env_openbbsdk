@@ -1,5 +1,5 @@
 #!/bin/sh -e
-sex -x
+set -x
 PUID=${PUID:-911}
 PGID=${PGID:-911}
 groupmod -o -g "$PGID" abc
