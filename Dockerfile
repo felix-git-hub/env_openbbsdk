@@ -12,7 +12,8 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 
 
-
+#copy file
+COPY root/ /
 #sudo permission
 
 # hadolint ignore=DL3008
@@ -40,8 +41,6 @@ RUN apt-get update -q && \
   chown abc:abc /config && \
   mkdir -p /opt && \
   chown abc:abc /opt && \
-  echo "#!/bin/sh -e" >> /init && \
-  echo "/opt/conda/envs/obb/bin/jupyter lab /config/.jupyter/jupyter_lab_config.py" >> /init && \
   chmod +x /init
 
 
