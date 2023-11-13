@@ -46,7 +46,6 @@ RUN apt-get update -q && \
 
 ENV PATH /opt/conda/bin:$PATH
 
-CMD [ "/init" ]
 
 # Leave these args here to better use the Docker build cache
 ARG CONDA_VERSION=py311_23.9.0-0
@@ -85,3 +84,6 @@ RUN set -x && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
     /opt/conda/condabin/conda  clean -afy 
+
+USER root
+CMD [ "/init" ]
