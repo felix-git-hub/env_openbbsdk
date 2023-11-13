@@ -5,5 +5,5 @@ PGID=${PGID:-911}
 groupmod -o -g "$PGID" abc
 usermod -o -u "$PUID" abc
 whoami
-/opt/conda/envs/obb/bin/jupyter lab /config/.jupyter/jupyter_lab_config.py
+su - abc -s /bin/sh -c  "/opt/conda/envs/obb/bin/jupyter lab /config/.jupyter/jupyter_lab_config.py"
 sex +x
