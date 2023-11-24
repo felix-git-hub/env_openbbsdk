@@ -78,8 +78,8 @@ RUN set -x && \
     if [ "${CONDA_VERSION}" != "latest" ]; then sha256sum --check --status shasum; fi && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh shasum && \
-    echo "conda activate obb" >> /home/abc/.bashrc && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/abc/.bashrc && \
+    echo "conda activate obb" >> /home/abc/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
     /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml && \
