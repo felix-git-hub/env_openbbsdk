@@ -35,10 +35,12 @@ RUN apt-get update -q && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
   echo "**** create abc user and make our folders ****" && \
-  useradd -u 911 -U -d /config -s /bin/false abc && \
+  useradd -u 911 -U -d /home/abc -s /bin/false abc && \
   usermod -G users abc && \
   mkdir /config && \
+  mkdir /home/abc && \
   chown abc:abc /config && \
+  chown abc:abc /home/abc && \
   mkdir -p /opt && \
   chown abc:abc /opt && \
   chmod +x /init
@@ -76,8 +78,8 @@ RUN set -x && \
     if [ "${CONDA_VERSION}" != "latest" ]; then sha256sum --check --status shasum; fi && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh shasum && \
-    echo "conda activate obb" >> /config/.bashrc && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> /config/.bashrc && \
+    echo "conda activate obb" >> /home/abc/.bashrc && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/abc/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
     /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-9-env.yaml && \
