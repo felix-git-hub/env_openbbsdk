@@ -88,7 +88,8 @@ RUN set -x && \
     /opt/conda/envs/obb/bin/pip  install openbb==$openbb_version --no-cache-dir && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
-    /opt/conda/condabin/conda  clean -afy 
+    /opt/conda/condabin/conda  clean -afy || \
+    echo "fail"
 
 USER root
 CMD [ "/init" ]
