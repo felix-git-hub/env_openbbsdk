@@ -9,10 +9,10 @@ chown -R abc:abc /opt
 
 
 if [ -z "$CONFIG_FILE" ]; then
-     su - abc -s /bin/sh -c "jupyter lab --config=/config/.jupyter/jupyter_lab_config.py"
+     su - abc -s /bin/sh -c "/opt/conda/envs/obb/bin/jupyter lab --config=/config/.jupyter/jupyter_lab_config.py"
 else
     # 如果非空，使用环境变量的值
-     su - abc -s /bin/sh -c "jupyter lab --config=$CONFIG_FILE"
+     su - abc -s /bin/sh -c "/opt/conda/envs/obb/bin/jupyter lab --config=$CONFIG_FILE"
 fi
 
 
