@@ -15,7 +15,7 @@ docker-compose.yml
 version: "2.1"
 services:
   openbb:
-    image: ghcr.io/felix-git-hub/env_openbbsdk:latest
+    image: ghcr.io/felix-git-hub/openbb_docker:latest
     container_name: openbb
     environment:
       - TZ=Asia/Shanghai
