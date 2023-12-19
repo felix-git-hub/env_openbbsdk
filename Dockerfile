@@ -34,6 +34,7 @@ RUN apt-get update -q && \
         build-essential\ 
         jq\
         net-tools\
+        curl\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
   echo "**** create abc user and make our folders ****" && \
