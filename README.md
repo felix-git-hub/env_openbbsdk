@@ -21,7 +21,7 @@ services:
       - TZ=Asia/Shanghai
       - PUID=1000
       - PGID=1001
-      - CONFIG_FILE=/config/.jupyter/jupyter_lab_config.py
+      - CONFIG_FILE=/config/.jupyter/jupyter_lab_config.py #optional
     volumes:
       - /folder/to/data:/config
     restart: unless-stopped
