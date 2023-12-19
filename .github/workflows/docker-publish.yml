@@ -73,7 +73,7 @@ jobs:
       - name: Extract version from tag
         id: version
         run: |
-            RELEASE_VERSION=${GITHUB_REF/refs\/tags\//}
+            RELEASE_VERSION=$(gh release view latest --json tag_name -q .tag_name)
             echo "Latest release version: $RELEASE_VERSION"
 #          RELEASE_VERSION=$(curl -sSL https://api.github.com/repos/felix-git-hub/openbb_docker/releases/latest | jq -r .tag_name)
 #          echo "Latest release version: $RELEASE_VERSION"
