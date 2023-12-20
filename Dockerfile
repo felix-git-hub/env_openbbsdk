@@ -88,7 +88,7 @@ RUN set -x && \
     /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-10-env.yaml && \
     openbb_version=$(curl -sSL https://api.github.com/repos/OpenBB-finance/OpenBBTerminal/releases/latest | jq -r .tag_name) && \
     openbb_version="${openbb_version#v}"  && \
-    /opt/conda/envs/obb/bin/pip  install openbb[all]==$openbb_version --no-cache-dir && \
+    /opt/conda/envs/obb/bin/pip  install openbb==$openbb_version --no-cache-dir && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
     /opt/conda/condabin/conda  clean -afy || \
