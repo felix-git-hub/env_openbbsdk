@@ -92,7 +92,7 @@ RUN set -x && \
     /opt/conda/envs/obb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
     /opt/conda/condabin/conda  clean -afy || \
-    echo "fail"
+    echo "fail" 
 
 USER root
 CMD [ "/init" ]
