@@ -7,7 +7,7 @@ name: Docker
 
 on:
   schedule:
-    - cron: '42 14 * * *'
+    - cron: '45 21 * * *'
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
@@ -69,17 +69,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      # Extract version from tag
-      - name: Extract version from tag
-        id: version
-        run: |
-          RELEASE_VERSION=$(curl -sSL https://api.github.com/repos/felix-git-hub/openbb_docker/releases/latest | jq -r .tag_name)
-          echo "Latest release version: $RELEASE_VERSION"
-          echo "RELEASE_VERSION=$RELEASE_VERSION">> $GITHUB_ENV
-          echo "DOCKER_IMAGE=${ARTIFACTORY_URL}/${IMAGE_NAME}:${GITHUB_REF##*/}.${{github.run_number}}" >> $GITHUB_ENV
-
-      
-      #    echo ${{ env.DOCKER_IMAGE }}
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
@@ -88,15 +77,11 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-#          tags: ${{ steps.meta.outputs.tags }}
-#          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{env.RELEASE_VERSION}}  # 修改这里，将标签改为 "latest"
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest # 修改这里，将标签改为 "latest"
-
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-          
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
       # repository is public to avoid leaking data.  If you would like to publish
