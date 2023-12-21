@@ -1,4 +1,4 @@
-# env_openbbsdk
+# openbb platform sdk
 
 full functional openbb sdk with jupyter lab support;
 docker pull ghcr.io/felix-git-hub/env_openbbsdk:main
