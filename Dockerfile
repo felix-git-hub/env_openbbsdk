@@ -85,11 +85,11 @@ RUN set -x && \
     echo "conda activate obb" >> /home/abc/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
-    /opt/conda/condabin/conda env create -n obb --file https://raw.githubusercontent.com/OpenBB-finance/OpenBBTerminal/main/build/conda/conda-3-10-env.yaml && \
+    /opt/conda/condabin/conda env create -n openbb python=3.11 && \
     openbb_version=$(curl -sSL https://api.github.com/repos/OpenBB-finance/OpenBBTerminal/releases/latest | jq -r .tag_name) && \
     openbb_version="${openbb_version#v}"  && \
-    /opt/conda/envs/obb/bin/pip  install "openbb[all]==$openbb_version" --no-cache-dir && \
-    /opt/conda/envs/obb/bin/pip install jupyter  && \
+    /opt/conda/envs/openbb/bin/pip  install "openbb[all]" --no-cache-dir && \
+    /opt/conda/envs/openbb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
     /opt/conda/condabin/conda  clean -afy || \
     echo "fail" 
