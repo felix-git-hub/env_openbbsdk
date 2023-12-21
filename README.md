@@ -7,6 +7,11 @@ docker pull ghcr.io/felix-git-hub/env_openbbsdk:main
 Feature
 1. based on debian bookworm, integraded with openbb sdk
 2. /config is mounted with normal user, otherwise jupyter may be not able to adjust font size
+3. upgraded from openbb sdk[3.x] to openbb platfrom[4.x]
+
+## reference
+https://docs.openbb.co/platform/installation
+https://github.com/OpenBB-finance/OpenBBTerminal/tree/develop/examples
 
 ## how to create docker
 docker-compose.yml
