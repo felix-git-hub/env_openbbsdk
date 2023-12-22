@@ -53,8 +53,8 @@ ENV PATH /opt/conda/bin:$PATH
 
 
 # Leave these args here to better use the Docker build cache
-ARG CONDA_VERSION=py311_23.9.0-0
-
+#ARG CONDA_VERSION=py311_23.9.0-0
+ARG CONDA_VERSION=latest
 
 #user permission
 WORKDIR /config
