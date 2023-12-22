@@ -85,7 +85,7 @@ RUN set -x && \
     echo "conda activate obb" >> /home/abc/.bashrc && \
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
-    /opt/conda/condabin/conda env create -n openbb python=3.11 && \
+    /opt/conda/condabin/conda  create -n openbb python=3.11 && \
     openbb_version=$(curl -sSL https://api.github.com/repos/OpenBB-finance/OpenBBTerminal/releases/latest | jq -r .tag_name) && \
     openbb_version="${openbb_version#v}"  && \
     /opt/conda/envs/openbb/bin/pip  install "openbb[all]" --no-cache-dir && \
