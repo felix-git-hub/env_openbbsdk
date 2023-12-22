@@ -34,7 +34,7 @@ RUN apt-get update -q && \
         build-essential\ 
         jq\
         net-tools\
-        curl\
+#        curl\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
   echo "**** create abc user and make our folders ****" && \
@@ -87,8 +87,8 @@ RUN set -x && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
     rm /opt/conda/pkgs/ -rf && \
     /opt/conda/condabin/conda  create -n openbb python=3.11 && \
-    openbb_version=$(curl -sSL https://api.github.com/repos/OpenBB-finance/OpenBBTerminal/releases/latest | jq -r .tag_name) && \
-    openbb_version="${openbb_version#v}"  && \
+#    openbb_version=$(curl -sSL https://api.github.com/repos/OpenBB-finance/OpenBBTerminal/releases/latest | jq -r .tag_name) && \
+#    openbb_version="${openbb_version#v}"  && \
     /opt/conda/envs/openbb/bin/pip  install "openbb[all]" --no-cache-dir && \
     /opt/conda/envs/openbb/bin/pip install jupyter  && \
     /opt/conda/condabin/conda clean -afy && \
