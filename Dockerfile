@@ -83,8 +83,8 @@ RUN set -x && \
     rm miniconda.sh shasum && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/abc/.bashrc && \
     echo "conda activate openbb" >> /home/abc/.bashrc && \
-    find /opt/conda/ -follow -type f -name '*.a' -delete && \
-    find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
+#    find /opt/conda/ -follow -type f -name '*.a' -delete && \
+#    find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
     rm /opt/conda/pkgs/ -rf && \
     /opt/conda/condabin/conda  create -n openbb python=3.11 && \
 #    openbb_version=$(curl -sSL https://api.github.com/repos/OpenBB-finance/OpenBBTerminal/releases/latest | jq -r .tag_name) && \
