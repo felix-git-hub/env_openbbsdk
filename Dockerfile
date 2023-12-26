@@ -47,7 +47,7 @@ RUN apt-get update -q && \
   chown abc:abc /home/abc && \
   mkdir -p /opt && \
   chown abc:abc /opt && \
-  echo "abc ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/username  && \
+  echo "abc ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/abc  && \
   chmod +x /init
 
 
