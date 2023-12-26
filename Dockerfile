@@ -83,8 +83,8 @@ RUN set -x && \
     if [ "${CONDA_VERSION}" != "latest" ]; then sha256sum --check --status shasum; fi && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh shasum && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/abc/.bashrc && \
-    echo "conda activate openbb" >> /home/abc/.bashrc && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /config/.bashrc && \
+    echo "conda activate openbb" >> /config/.bashrc && \
 #    find /opt/conda/ -follow -type f -name '*.a' -delete && \
 #    find /opt/conda/ -follow -type f -name '*.js.map' -delete  && \
     rm /opt/conda/pkgs/ -rf && \
