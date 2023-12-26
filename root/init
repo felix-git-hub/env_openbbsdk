@@ -7,6 +7,17 @@ sudo usermod -o -u "$PUID" abc
 whoami
 sudo chown -R abc:abc /opt
 
+if grep -q "/opt/conda/etc/profile.d/conda.sh" ~/.bashrc; then
+    echo "Found!"
+else
+echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/abc/.bashrc 
+fi
+
+if grep -q "conda activate openbb" ~/.bashrc; then
+    echo "Found!"
+else
+echo "conda activate openbb" >> /home/abc/.bashrc 
+fi
 
 if [ -z "$CONFIG_FILE" ]; then
 #     su - abc -s /bin/sh -c "/opt/conda/envs/openbb/bin/jupyter lab --config=/config/.jupyter/jupyter_lab_config.py"
