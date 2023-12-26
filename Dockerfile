@@ -38,7 +38,7 @@ RUN apt-get update -q && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
   echo "**** create abc user and make our folders ****" && \
-  useradd -u 911 -U -d /home/abc -s /bin/false abc && \
+  useradd -u 911 -U -d /config -s /bin/false abc && \
   usermod -G users abc && \
   mkdir /config && \
   mkdir /home/abc && \
