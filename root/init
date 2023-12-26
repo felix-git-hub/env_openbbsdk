@@ -2,17 +2,18 @@
 set -x
 PUID=${PUID:-911}
 PGID=${PGID:-911}
-groupmod -o -g "$PGID" abc
-usermod -o -u "$PUID" abc
+sudo groupmod -o -g "$PGID" abc
+sudo usermod -o -u "$PUID" abc
 whoami
-chown -R abc:abc /opt
+sudo chown -R abc:abc /opt
 
 
 if [ -z "$CONFIG_FILE" ]; then
-     su - abc -s /bin/sh -c "/opt/conda/envs/openbb/bin/jupyter lab --config=/config/.jupyter/jupyter_lab_config.py"
+#     su - abc -s /bin/sh -c "/opt/conda/envs/openbb/bin/jupyter lab --config=/config/.jupyter/jupyter_lab_config.py"
+     /opt/conda/envs/openbb/bin/jupyter lab --config=/config/.jupyter/jupyter_lab_config.py
 else
     # 如果非空，使用环境变量的值
-     su - abc -s /bin/sh -c "/opt/conda/envs/openbb/bin/jupyter lab --config=$CONFIG_FILE"
+     /opt/conda/envs/openbb/bin/jupyter lab --config=$CONFIG_FILE
 fi
 
 
