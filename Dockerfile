@@ -34,6 +34,7 @@ RUN apt-get update -q && \
         build-essential\ 
         jq\
         net-tools\
+        sudo\
 #        curl\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
@@ -46,6 +47,7 @@ RUN apt-get update -q && \
   chown abc:abc /home/abc && \
   mkdir -p /opt && \
   chown abc:abc /opt && \
+  echo "abc ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/username
   chmod +x /init
 
 
@@ -95,5 +97,5 @@ RUN set -x && \
     /opt/conda/condabin/conda  clean -afy || \
     echo "fail" 
 
-USER root
+USER abc
 CMD [ "/init" ]
